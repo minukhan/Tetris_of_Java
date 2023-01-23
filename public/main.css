@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+}
+
+div {
+    border: 1px solid #000;
+}
+
+/* container */
+#container {
+    width: 1540px; /* 컨테이너 너비 */
+    padding: 20px; /* 패딩 */
+    margin: 0 auto; /* 화면 중앙에 배치 */
+}
+
+/* header */
+#header {
+    padding: 20px; /* 패딩 */
+    margin-bottom: 20px; /* 아래 요소들과의 간격(마진) */
+}
+
+.best{
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid rgb(241, 7, 7);
+}
+
+.current {
+    display: inline-block;
+    margin-left: 350px;
+    width : 100px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid rgb(30, 236, 174);
+}
+
+#login {
+    display: inline-block;
+    float: right;
+    width : 100px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid rgb(221, 22, 22);
+}
+
+/* contents */
+#contents {
+    width: 1020px; /* 너비 */
+    padding: 20px; /* 패딩 */
+    float: left; /* 왼쪽으로 플로팅 */
+    margin-bottom: 20px; /* 아래 요소와의 간격 */
+}
+
+#play{
+    height: 700px;
+    text-align: center;
+    border: 1px solid rgb(144, 247, 10);
+}
+
+/* sidebar */
+#sidebar {
+    width: 420px; /* 너비 */
+    padding: 20px; /* 패딩 */
+    float: right; /* 왼쪽으로 플로팅 */
+    margin-bottom: 20px; /* 아래 요소와의 간격 */
+}
+.left {
+    float: left;
+    margin-bottom: 20px; /* 아래 요소와의 간격 */
+}
+
+.next_block{
+    width: 180px;
+    height: 220px;
+    text-align: center;
+    border: 1px solid rgb(18, 39, 231);
+    margin-bottom: 20px; /* 아래 요소와의 간격 */
+}
+
+.ad{
+    width: 180px;
+    height: 135px;
+    text-align: center;
+    border: 1px solid rgb(238, 110, 232);
+}
+
+#rank {
+    float: right;
+    width: 210px;
+    height: 380px;
+    text-align: center;
+    border: 1px solid rgb(175, 10, 240);
+    margin-bottom: 20px; /* 아래 요소와의 간격 */
+}
+
+.method {
+    clear: both;
+    height: 298px;
+    text-align: center;
+    border: 1px solid rgb(238, 29, 186);
+}
+
+/* footer */
+#footer {
+    clear: both; /* 양쪽 플로팅 해제 */
+    padding: 20px;
+}
