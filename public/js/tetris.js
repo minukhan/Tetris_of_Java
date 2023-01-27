@@ -8,6 +8,10 @@ const playground = document.querySelector(".playground > ul"); //테트리스 �
 const gameText = document.querySelector(".game-text");
 const scoreDisplay = document.querySelector(".score");
 const restartButton = document.querySelector(".game-text > button");
+const rankText = document.querySelector(".rank-text");
+const cancelButton = document.getElementById("cancel");
+const rankscore = document.getElementById("score");
+const signButton = document.getElementById("sign");
 
 // Setting
 const GAME_ROWS = 20;
@@ -204,19 +208,22 @@ const BLOCKS = {
     ],
 }
 
+const rank = []
 const movingItem = { //블럭의 타입과 좌표 등과 같은 정보
     type: "",
     direction: 3, //블럭 회전
     top: 0, //좌표 기준 어디까지 내려가는지
     left: 0, //좌표 기준 좌우 조정
-};
+}
 
 init()
 
 // functions
 function init() {
-    tempmovingItem = { ...movingItem }; //spread operator 이용하여 값만 가져오기
-    for (let i = 0; i < GAME_ROWS; i++) {
+    score = 0; //초기화
+    scoreDisplay.innerHTML = score; 
+    tempMovingItem = { ...movingItem }; //spread operator 이용하여 값만 가져오기
+    for(let i = 0; i < GAME_ROWS; i++){
         prependNewLine()
     }
     generateNewBlock()
@@ -275,11 +282,12 @@ function seizeBlock(){
     checkMatch()
 }
 function checkMatch(){
-    const childNodes = playground.childNodes
-    childNodes.forEach(child=>{
+
+    const childNodes = playground.childNodes;
+    childNodes.forEach(child => {
         let matched = true;
-        child.children[0].childNodes.forEach(li=>{
-            if (!li.classList.contains("seized")){
+        child.children[0].childNodes.forEach(li => {
+            if(!li.classList.contains("seized")) {
                 matched = false;
             }
         })
@@ -317,51 +325,61 @@ function checkEmpty(target){
     return true;
 }
 function moveBlock(moveType, amount){
-    tempmovingItem[moveType] += amount;
+    tempMovingItem[moveType] += amount;
     renderBlocks(moveType)
 }
 function changeDirection(){
-    const direction = tempmovingItem.direction;
-    direction === 3 ? tempmovingItem.direction = 0 : tempmovingItem.direction += 1;
+    const direction = tempMovingItem.direction;
+    direction === 3 ? tempMovingItem.direction = 0 : tempMovingItem.direction += 1;
     renderBlocks()
 }
 function dropBlock(){
     clearInterval(downInterval);
-    downInterval = setInterval(() => {
-        moveBlock("top", 1)
-    }, 10) //시간 10
+    downInterval = setInterval (() => {
+        moveBlock("top",1)
+    },10) //시간 10
 }
 function showGameoverText(){
-    gameText.style.display = "flex"
+    rankscore.innerHTML = score + " 점!!!"
+    rankText.style.display = 'flex'
 }
-
-//event handling
-document.addEventListener("keydown", e => {
+function CancelEvent(){
+    gameText.style.display = 'flex'
+}
+function signEvent(){
+    rank.push(score)
+    console.log(rank)
+    gameText.style.display = 'flex'
+}
+// event handling
+document.addEventListener("keydown",e =>{
     switch(e.keyCode){
-        case 39: //오른쪽 이동
-            moveBlock("left", 1);
+        case 39 : //오른쪽 이동
+            moveBlock("left",1);
             break;
         case 37: //왼쪽 이동
-            moveBlock("left", -1);
+            moveBlock("left",-1);
             break;
         case 40: //아래쪽 이동
-            moveBlock("top", 1);
+            moveBlock("top",1);
             break;
         case 38: //도형 회전
             changeDirection();
             break;
-        case 32 : //space 
-            dropBlock();
+        case 32: //space
+            dropBlock()
             break;
         default:
             break;
     }
 })
 
-restartButton.addEventListener("click",() => {
-    playground.innerHTML = "";
-    gameText.style.display = "none"
-    score = 0;
-    scoreDisplay.innerText = score;
+restartButton.addEventListener("click",() =>{
+    playground.innerHTML="";
+    rankText.style.display = 'none'
+    gameText.style.display = 'none'
     init()
 })
+cancelButton.addEventListener("click",CancelEvent)
+signButton.addEventListener("click",signEvent)
+

@@ -38,7 +38,7 @@ div {
 
 #login {
     display: inline-block;
-    float: right;
+    /* float: right; */
     width : 100px;
     height: 30px;
     text-align: center;
