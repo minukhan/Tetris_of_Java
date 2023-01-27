@@ -1,5 +1,9 @@
 {
   "dependencies": {
+<<<<<<< HEAD
+    "express": "^4.18.2"
+=======
     "firebase": "^9.15.0"
+>>>>>>> 257348eb0cdb59635feaf2eef3e684d24bbbaa28
   }
 }
