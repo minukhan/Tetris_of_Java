@@ -96,7 +96,7 @@ div {
 }
 
 .method {
-    clear: both;
+    clear: both; /* 양쪽 플로팅 해제 */
     height: 298px;
     text-align: center;
     border: 1px solid rgb(238, 29, 186);
