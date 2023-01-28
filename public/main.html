@@ -6,17 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>테트리스</title>
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div id="container">
         <div id="header">
             <div class="best">최고기록</div>
-            <div class="current">현재기록</div>
+            <div class="score">현재기록</div>
             <div id="login">로그인</div>
         </div>
-
+        <div class="rank-text">
+            <div id="score"></div>
+            <span>랭킹등록하시겠습니까?</span>
+            <div>
+                <button id="sign" type="submit">등록</button>
+                <button id="cancel">취소</button>
+            </div>
+        </div>
         <div id="contents">
-            <div id="play">게임화면</div>
+            <div class="playground">
+                <ul></ul>
+            </div>
         </div>
 
         <div id="sidebar">
@@ -31,8 +41,15 @@
                 <img src="img/W.png" alt="위쪽 방향키">
             </div>
         </div>
-
+        <div class="game-text">
+            <span>게임종료!</span>
+            <button>다시시작</button>
+        </div>
         <div id="footer">
         </div>
     </div>
+    <!-- 로컬에서 실행시에는 (type="module") 비활성화 -->
+    <script src="js/tetris.js"></script>
+    <!-- 서버에서 실행시에는 (type="module") 활성화 -->
+    <!-- <script src="js/tetris.js" type="module"></script>  -->
 </html>
