@@ -13,6 +13,8 @@ const cancelButton = document.getElementById("cancel");
 const rankscore = document.getElementById("score");
 const signButton = document.getElementById("sign");
 
+const nextblocks = document.querySelector(".block-next"); //다음 블록 띄우기
+
 // Setting
 const GAME_ROWS = 20;
 const GAME_COLS = 10;
@@ -21,7 +23,7 @@ const GAME_COLS = 10;
 let score = 0;
 let duration = 500; //블럭이 떨어지는 시간
 let downInterval;
-let tempmovingItem; //movingItem을 실행하기 전 잠시 담아두는 용도
+let tempMovingItem //movingItem을 실행하기 전 잠시 담아두는 용도
 
 const BLOCKS = {
     square: [
@@ -240,7 +242,7 @@ function prependNewLine() {
     playground.prepend(li) //테트리스 판에 li 넣기
 }
 function renderBlocks(moveType = "") {
-    const { type, direction, top, left } = tempmovingItem;
+    const { type, direction, top, left } = tempMovingItem;
     const movingBlocks = document.querySelectorAll(".moving");
     movingBlocks.forEach(moving => {
         moving.classList.remove(type, "moving");
@@ -255,7 +257,8 @@ function renderBlocks(moveType = "") {
         if(isAvailable){
             target.classList.add(type, "moving")    
         } else {
-            tempmovingItem = { ...movingItem }
+            tempMovingItem 
+    = { ...movingItem }
             if(moveType === 'retry'){
                 clearInterval(downInterval)
                 showGameoverText()
@@ -314,7 +317,7 @@ function generateNewBlock(){ //새로운 블럭 내려오게 함
     movingItem.top = 0;
     movingItem.left = 3;
     movingItem.direction = 0;
-    tempmovingItem = {...movingItem};
+    tempMovingItem = {...movingItem};
     renderBlocks()
 }
 
@@ -325,7 +328,8 @@ function checkEmpty(target){
     return true;
 }
 function moveBlock(moveType, amount){
-    tempMovingItem[moveType] += amount;
+    tempMovingItem[
+moveType] += amount;
     renderBlocks(moveType)
 }
 function changeDirection(){
@@ -351,6 +355,10 @@ function signEvent(){
     console.log(rank)
     gameText.style.display = 'flex'
 }
+function shownextblocks() {
+
+}
+
 // event handling
 document.addEventListener("keydown",e =>{
     switch(e.keyCode){
