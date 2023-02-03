@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js" ></script>
+    <script>
+        window.kakao.init('5d420cdd3da22959dc9c44a900cf4aaa');
+
+        function kakaoLogin(){
+            window.kakao.Auth.login({
+                scope:'profile_nickname,account_email,gender',
+                
+            })
+        }
+    </script>
+</body>
+</html>
