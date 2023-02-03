@@ -9,47 +9,49 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div id="container">
-        <div id="header">
+    <div id="container"> <!-- 헤더 부분-->
+        <div id="header"> <!-- 헤더 부분-->
             <div class="best">최고기록</div>
             <div class="score">현재기록</div>
             <div id="login">로그인</div>
         </div>
-        <div class="rank-text">
-            <div id="score"></div>
-            <span>랭킹등록하시겠습니까?</span>
-            <div>
-                <button id="sign" type="submit">등록</button>
-                <button id="cancel">취소</button>
+        
+        <div id="contents"> <!-- 본문 부분-->
+            <div class="rank-text">
+                <div id="score"></div>
+                <span>랭킹등록하시겠습니까?</span>
+                <div>
+                    <button id="sign" type="submit">등록</button>
+                    <button id="cancel">취소</button>
+                </div>
             </div>
-        </div>
-        <div id="contents">
+            <div class="game-text">
+                <span>게임종료!</span>
+                <button>다시시작</button>
+            </div>
             <div class="playground">
                 <ul></ul>
             </div>
         </div>
 
-        <div id="sidebar">
+        <div id="sidebar"> <!-- 사이드 부분-->
             <div class="left">
                 <div class="next_block">다음블록</div>
                 <div class="ad">광고문의환영^^</div>
             </div>
-            <div id="rank">랭킹</div>
+            <div id="rank">랭킹
+                <div id="ranking"></div>
+            </div>
+
             <div class="method">
                 <h4>사용법</h4>
                 <img src="img/up.png" alt="위쪽 방향키">
                 <img src="img/W.png" alt="위쪽 방향키">
             </div>
         </div>
-        <div class="game-text">
-            <span>게임종료!</span>
-            <button>다시시작</button>
-        </div>
-        <div id="footer">
+        
+        <div id="footer"> <!-- 푸터 부분-->
         </div>
     </div>
-    <!-- 로컬에서 실행시에는 (type="module") 비활성화 -->
-    <script src="js/tetris.js"></script>
-    <!-- 서버에서 실행시에는 (type="module") 활성화 -->
-    <!-- <script src="js/tetris.js" type="module"></script>  -->
+    <script src="js/tetris.js" ></script> 
 </html>

@@ -351,10 +351,29 @@ function CancelEvent(){ // 취소버튼 클릭 시 이벤트
     gameText.style.display = 'flex'
 }
 function signEvent(){ // 등록 버튼 클릭 시 이벤트
-    rank.push(score)
+    // rank.push(score)
     // console.log(rank) <- 랭킹 확인 용도
+    ranking(score);
     gameText.style.display = 'flex'
 }
+function ranking(score) {
+    rank.push(score)
+    rank.sort(scoreCompare);
+    var showranking = document.getElementById("ranking");
+    var printArray = [];
+    for (var k = 0; k < rank.length; k++) {
+        if (k >= 10) {
+            break;
+        }
+        printArray.push((k + 1) + '위 : ' + '사용자 : 아무개' + " " + rank[k] + '점');
+    }
+    showranking.innerHTML = printArray.join("<br>"); // 웹브라우저 화면에 출력
+    console.log(rank)
+}
+function scoreCompare(a, b) {
+    return b - a;
+}
+
 // event handling
 document.addEventListener("keydown",e =>{
     switch(e.keyCode){
@@ -386,4 +405,3 @@ restartButton.addEventListener("click",() =>{ // 재시작 버튼 클릭 이벤�
 })
 cancelButton.addEventListener("click",CancelEvent) // 취소 버튼 클릭
 signButton.addEventListener("click",signEvent) // 등록 버튼 클릭
-
