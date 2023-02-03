@@ -8,6 +8,7 @@
 }
 ul {
     list-style: none; /*원래는 li 태그를 사용하면 점이 생기는데 그것을 없애주는 코드*/
+
 }
 
 body {
@@ -18,17 +19,59 @@ body {
 ex) class 명이 score 라면 .score {} 이런식으로 사용한다. 그리고 태그 안에 있는 태그를 사용하려면 
 .score > score2 이런식으로 사용한다. */
 
+.rank-text {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    width: 40vw;
+    height: 75vh;
+    background: rgba(0,0,0,0.7);
+    left: 6.1vw;
+    top: 13.2vh;
+    color: rgb(255, 255, 255);
+    font-size: 60px;
+}
+.rank-text > span {
+    margin-top: 10px;
+    font-size: 20px;
+}
+#sign{
+    display: inline-block;
+    outline: none;
+    margin-top: 5px;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    background: rgb(0, 153, 255);
+    border: none;
+    cursor: pointer;
+    width: 150px;
+    font-size: 25px;
+}
+#cancel{
+    display: inline-block;
+    outline: none;
+    margin-top: 5px;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    background: rgb(247, 28, 255);
+    border: none;
+    cursor: pointer;
+    width: 150px;
+    font-size: 25px;
+}
 .game-text {
     display: none;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.7);
-    left: 0;
-    top: 0;
+    width: 70vw;
+    height: 80vh;
+    background: rgba(0, 0, 0, 0.7);
+    left: 15vw;
+    top: 10vh;
     color: #fff;
     font-size: 50px;
 }
@@ -44,23 +87,7 @@ ex) class 명이 score 라면 .score {} 이런식으로 사용한다. 그리고 
     font-size: 36px;
     margin-bottom: 2rem;
 }
-.playground > ul {
-    border: 1px solid #333;
-    width: 250px;
-    margin: 0 auto; /* 가운데로 정렬하기 위한 코드임.*/
-}
-.playground > ul > li {
-    width: 100%;
-    height: 25px;
-}
-.playground > ul > li > ul {
-    display:  flex;
-}
-.playground > ul > li > ul > li {
-    width: 25px;
-    height: 25px;
-    outline: 1px solid #ccc;
-}
+
 .nextblock > ul {
     border: 1px solid #333;
     width: 250px;
@@ -78,24 +105,45 @@ ex) class 명이 score 라면 .score {} 이런식으로 사용한다. 그리고 
     height: 25px;
     outline: 1px solid #ccc;
 }
+
+.playground > ul {
+    /* border: 1px solid #333; */
+    width: 420px;
+    margin: 0 auto;
+    padding: 15px 0;
+}
+.playground > ul > li {
+    width: 100%;
+    height: 30px;
+}
+
+.playground > ul > li > ul {
+    display: flex;
+}
+
+.playground > ul > li > ul > li {
+    width: 35px;
+    height: 30px;
+    outline: 1px solid #ccc;
+}
+.square {
+    background: hotpink;
+}
+.bar {
+    background: salmon;
+}
 .tree {
     background: #67c23a;
 }
-.bar{
-    background: salmon;
-}
-.zeeLeft{
+.zeeLeft {
     background: #e6a23c;
 }
-.elLeft{
+.zeeRight {
+    background: #cc1d51;
+}
+.elLeft {
     background: #8e44ad;
 }
-.elRight{
+.elRight {
     background: #16a085;
-}
-.square {
-    background: red;
-}
-.zeeRight {
-    background: rgb(42, 20, 100);
 }

@@ -1,111 +1,278 @@
-import BLOCKS from "./blocks.js";
+/* 서버에서 실행시 (코드 4) 활성화, (코드 22 ~ 179) 비활성화
+   로컬에서 실행시 (코드 22~ 179) 활성화, (코드 4) 비활성화 */
+
+import BLOCKS from "./block";
 
 // DOM
-const playground = document.querySelector(".playground > ul");
-const nextblock = document.querySelector(".nextblock > ul");
+const playground = document.querySelector(".playground > ul"); //테트리스 판
 const gameText = document.querySelector(".game-text");
-const scoreDisplay = document.querySelector('.score');
-const restartButton = document.querySelector('.game-text > button');
-// Setting
-const GAME_ROWS = 20;
-const GAME_COLS = 10;
-const NEXT_ROWS = 10;
-const NEXT_COLS = 10;
-// variable
-let score = 0;       // 점수
-let duration = 500;  // 블럭이 떨어지는 시간. 나중에 레벨을 올라갈떄마다 빠르게 하면 좋을듯.
-let downInterval;    
-let tempMovingItem;
-let nexttempMovingItem     // 실질적으로 실행하기 전에 잠깐 담아두는 변수이다.
-let isFalling = false;  
+const scoreDisplay = document.querySelector(".score");
+const restartButton = document.querySelector(".game-text > button");
+const rankText = document.querySelector(".rank-text"); // 랭킹 표시 탭
+const cancelButton = document.getElementById("cancel"); // 랭킹에서 취소 버튼
+const rankscore = document.getElementById("score"); // 랭킹에 표시되는 점수
+const signButton = document.getElementById("sign"); // 랭킹에서 등록 버튼
 
-const movingItem = {   //  다음 블럭의 타입과 좌표들을 저장하고 있는 함수.
-    type : "",
-    direction : 3,  //윗 화살표를 눌렀을때 좌우로 돌려줄때 사용할것임.
-    top: 0,
-    left : 0,
-};
-const nextmovingItem = {   //  다음 블럭의 타입과 좌표들을 저장하고 있는 함수.
-    type2 : "",
-    direction2 : 3,  //윗 화살표를 눌렀을때 좌우로 돌려줄때 사용할것임.
-    top2: 0,
-    left2 : 0,
-};
+
+// Setting
+const GAME_ROWS = 22;
+const GAME_COLS = 14;
+
+
+// variables
+let score = 0;
+let duration = 500; //블럭이 떨어지는 시간
+let downInterval;
+let tempMovingItem; //movingItem을 실행하기 전 잠시 담아두는 용도
+
+
+// const BLOCKS = {
+//     square: [
+//         [
+//             [0, 0],
+//             [0, 1],
+//             [1, 0],
+//             [1, 1]
+//         ], //첫번째 모양
+//         [
+//             [0, 0],
+//             [0, 1],
+//             [1, 0],
+//             [1, 1]
+//         ], //회전 시 그다음 두번째 모양
+//         [
+//             [0, 0],
+//             [0, 1],
+//             [1, 0],
+//             [1, 1]
+//         ], //또 회전시 그다음 세번째 모양
+//         [
+//             [0, 0],
+//             [0, 1],
+//             [1, 0],
+//             [1, 1]
+//         ], //또 회전시 그다음 네번째 모양
+//     ],
+//     bar: [
+//         [
+//             [1, 0],
+//             [2, 0],
+//             [3, 0],
+//             [4, 0]
+//         ], //첫번째 모양
+//         [
+//             [2, -1],
+//             [2, 0],
+//             [2, 1],
+//             [2, 2]
+//         ], //회전 시 그다음 두번째 모양
+//         [
+//             [1, 0],
+//             [2, 0],
+//             [3, 0],
+//             [4, 0]
+//         ], //또 회전시 그다음 세번째 모양
+//         [
+//             [2, -1],
+//             [2, 0],
+//             [2, 1],
+//             [2, 2]
+//         ], //또 회전시 그다음 네번째 모양
+//     ],
+//     tree: [
+//         [
+//             [1, 0],
+//             [0, 1],
+//             [1, 1],
+//             [2, 1]
+//         ], //첫번째 모양
+//         [
+//             [1, 0],
+//             [0, 1],
+//             [1, 1],
+//             [1, 2]
+//         ], //회전 시 그다음 두번째 모양
+//         [
+//             [2, 1],
+//             [0, 1],
+//             [1, 1],
+//             [1, 2]
+//         ], //또 회전시 그다음 세번째 모양
+//         [
+//             [2, 1],
+//             [1, 2],
+//             [1, 1],
+//             [1, 0]
+//         ], //또 회전시 그다음 네번째 모양
+//     ],
+//     zeeLeft: [
+//         [
+//             [0, 0],
+//             [1, 0],
+//             [1, 1],
+//             [2, 1],
+//         ],
+//         [
+//             [0, 1],
+//             [1, 0],
+//             [1, 1],
+//             [0, 2],
+//         ],
+//         [
+//             [0, 0],
+//             [1, 0],
+//             [1, 1],
+//             [2, 1],
+//         ],
+//         [
+//             [0, 1],
+//             [1, 0],
+//             [1, 1],
+//             [0, 2],
+//         ],
+//     ],
+//     zeeRight: [
+//         [
+//             [0, 1],
+//             [1, 0],
+//             [1, 1],
+//             [2, 0],
+//         ],
+//         [
+//             [0, 0],
+//             [0, 1],
+//             [1, 1],
+//             [1, 2],
+//         ],
+//         [
+//             [0, 1],
+//             [1, 0],
+//             [1, 1],
+//             [2, 0],
+//         ],
+//         [
+//             [0, 0],
+//             [0, 1],
+//             [1, 1],
+//             [1, 2],
+//         ],
+//     ],
+//     elLeft: [
+//         [
+//             [0, 0],
+//             [0, 1],
+//             [1, 1],
+//             [2, 1]
+//         ], //첫번째 모양
+//         [
+//             [1, 0],
+//             [1, 1],
+//             [1, 2],
+//             [0, 2]
+//         ], //회전 시 그다음 두번째 모양
+//         [
+//             [0, 1],
+//             [1, 1],
+//             [2, 1],
+//             [2, 2]
+//         ], //또 회전시 그다음 세번째 모양
+//         [
+//             [1, 0],
+//             [2, 0],
+//             [1, 1],
+//             [1, 2]
+//         ], //또 회전시 그다음 네번째 모양
+//     ],
+//     elRight: [
+//         [
+//             [0, 1],
+//             [1, 1],
+//             [2, 1],
+//             [2, 0],
+//         ], //첫번째 모양
+//         [
+//             [0, 0],
+//             [1, 0],
+//             [1, 1],
+//             [1, 2],
+//         ], //회전 시 그다음 두번째 모양
+//         [
+//             [0, 1],
+//             [1, 1],
+//             [2, 1],
+//             [0, 2],
+//         ], //또 회전시 그다음 세번째 모양
+//         [
+//             [1, 0],
+//             [1, 1],
+//             [1, 2],
+//             [2, 2],
+//         ], //또 회전시 그다음 네번째 모양
+//     ],
+// }
+
+const rank = [] // 랭킹에 들어가는 배열
+const movingItem = { //블럭의 타입과 좌표 등과 같은 정보
+    type: "",
+    direction: 3, //블럭 회전
+    top: 0, //좌표 기준 어디까지 내려가는지
+    left: 0, //좌표 기준 좌우 조정
+}
+
 
 init()
 
-function init() { //스크립트가 시작이 될때 실행되는 함수이다. init 함수.   
-    score = 0;
-    scoreDisplay.innerHTML = score;
-    tempMovingItem = { ...movingItem }; 
-    nexttempMovingItem = { ...nextmovingItem };
-
-    //  "{...}" 이 표시는 tempMovingItem 에서 movingItem 를 대입받는데 일시적인 그 데이터만 대입받고 그이후에 movingItem에서 변하는 값들은 영향 안미치도록 하는 기능을 가진다 말 그대로 값만 넣는것임. (얕은복사)
-
+// functions
+function init() {
+    score = 0; //초기화
+    scoreDisplay.innerHTML = "현재기록 : " + score; 
+    tempMovingItem = { ...movingItem }; //spread operator 이용하여 값만 가져오기
     for(let i = 0; i < GAME_ROWS; i++){
         prependNewLine()
     }
-    for(let i = 0; i < NEXT_ROWS; i++){
-        prependNewLine2()
-    }
     generateNewBlock()
 }
-function prependNewLine2(){
-    const li = document.createElement("li");
-    const ul = document.createElement("ul");
-    for(let j=0; j < NEXT_COLS; j++){
-        const matrix = document.createElement("li");
-        ul.prepend(matrix);
+
+function prependNewLine() {
+    const li = document.createElement("li"); //20개의 행
+    const ul = document.createElement("ul"); //li를 포함한 행
+    for(let j = 0; j < GAME_COLS; j++){
+        const matrix = document.createElement("li"); //셀을 10개 만들어줌
+        ul.prepend(matrix); //만든 셀(10개)을 ul에 넣기
     }
-    li.prepend(ul)
-    nextblock.prepend(li)
+    li.prepend(ul) //li에 ul 넣기
+    playground.prepend(li) //테트리스 판에 li 넣기
 }
-function prependNewLine(){
-    const li = document.createElement("li");
-    const ul = document.createElement("ul");
-    for(let j=0; j < GAME_COLS; j++){
-        const matrix = document.createElement("li");
-        ul.prepend(matrix);
-    }
-    li.prepend(ul)
-    playground.prepend(li)
-}
-function renderBlocks(moveType = ""){
-
-    const { type, direction, top, left} = tempMovingItem; //tempMovingItem안에 있는 각각의 변수들을 분리해서 사용하겠다. 
-    const { type2, direction2, top2, left2} = nexttempMovingItem;
-
-
-    console.log(nexttempMovingItem)
-
-
-    const movingBlocks = document.querySelectorAll(".moving")
+function renderBlocks(moveType = "") {
+    const { type, direction, top, left } = tempMovingItem;
+    const movingBlocks = document.querySelectorAll(".moving");
     movingBlocks.forEach(moving => {
         moving.classList.remove(type, "moving");
     })
-    
-    BLOCKS[type][direction].some((block) => {
-        const x = block[0] + left; //기본값에 left만큼 이동을 시킨것임.  가로를 의미함.
-        const y = block[1] + top;  // 기본값에 top 만큼 이동을 시킨것.   세로를 의미함.
-        const target = playground.childNodes[y] ? playground.childNodes[y].childNodes[0].childNodes[x] : null; 
+    BLOCKS[type][direction].some(block => {
+        const x = block[0] + left;
+        const y = block[1] + top;
+        /* 삼항 연산자 
+        const xxx = 조건 ? 참일 경우 : 거짓일 경우 */
+        const target = playground.childNodes[y] ?  playground.childNodes[y].childNodes[0].childNodes[x] : null;
+        //console.log(target)
         const isAvailable = checkEmpty(target);
         if(isAvailable){
-            target.classList.add(type,"moving")
+            target.classList.add(type, "moving")    
         } else {
-            tempMovingItem = {...movingItem}
+            tempMovingItem = { ...movingItem }
             if(moveType === 'retry'){
                 clearInterval(downInterval)
                 showGameoverText()
             }
             setTimeout(() => {
                 renderBlocks('retry');
-                if(moveType ==="top"){
+                if(moveType === "top"){
                     seizeBlock();
                 }
-            }, 0)
+            },0) //시간 0
             return true;
         }
-        
     })
     movingItem.left = left;
     movingItem.top = top;
@@ -131,19 +298,20 @@ function checkMatch(){
         })
         if(matched){
             child.remove();
-            prependNewLine();
+            prependNewLine()
             score++;
-            scoreDisplay.innerHTML = score;
+            scoreDisplay.innerText = score;
         }
     })
-
     generateNewBlock()
 }
-function generateNewBlock() {
+function generateNewBlock(){ //새로운 블럭 내려오게 함
+
     clearInterval(downInterval);
     downInterval = setInterval(() => {
-        moveBlock('top', 1)
-    }, duration)
+        moveBlock("top", 1)
+    }, duration) //시간 duration
+
     const blockArray = Object.entries(BLOCKS);
     const randomIndex = Math.floor(Math.random() * blockArray.length)
     movingItem.type = blockArray[randomIndex][0]
@@ -153,9 +321,10 @@ function generateNewBlock() {
     tempMovingItem = {...movingItem};
     renderBlocks()
 }
+
 function checkEmpty(target){
-    if(!target || target.classList.contains("seized")){
-        return false; 
+    if (!target || target.classList.contains("seized")) {
+        return false;
     }
     return true;
 }
@@ -172,28 +341,55 @@ function dropBlock(){
     clearInterval(downInterval);
     downInterval = setInterval (() => {
         moveBlock("top",1)
-    },10)
+    },10) //시간 10
 }
 function showGameoverText(){
-    gameText.style.display = 'flex'
-    
+    rankscore.innerHTML = score + " 점!!!" // 획득 점수를 랭킹판에 표현
+    rankText.style.display = 'flex' 
 }
-// event handling
-document.addEventListener("keydown",e =>{  //keydown 이벤트가 어떤 키가 눌려졌을때 그 눌려진 키를 e라는 객체로 받는다 그리고 각 키에는 고유의 키코드가있는데 그것을 이용할 것 이다.
-    switch(e.keyCode){
-        case 39 : // 오른쪽 방향키의 키코드 : 39
-            moveBlock("left",1); // moveBlock이라는 함수는 left의 값을 바꿔주는 함수.
+function CancelEvent(){ // 취소버튼 클릭 시 이벤트
+    gameText.style.display = 'flex'
+}
+function signEvent(){ // 등록 버튼 클릭 시 이벤트
+    // rank.push(score)
+    // console.log(rank) <- 랭킹 확인 용도
+    ranking(score);
+    gameText.style.display = 'flex'
+}
+function ranking(score) {
+    rank.push(score)
+    rank.sort(scoreCompare);
+    var showranking = document.getElementById("ranking");
+    var printArray = [];
+    for (var k = 0; k < rank.length; k++) {
+        if (k >= 10) {
             break;
-        case 37:  // 왼쪽 방향키의 키코드 : 37
+        }
+        printArray.push((k + 1) + '위 : ' + '사용자 : 아무개' + " " + rank[k] + '점');
+    }
+    showranking.innerHTML = printArray.join("<br>"); // 웹브라우저 화면에 출력
+    //console.log(rank)
+}
+function scoreCompare(a, b) {
+    return b - a;
+}
+
+// event handling
+document.addEventListener("keydown",e =>{
+    switch(e.keyCode){
+        case 39 : //오른쪽 이동
+            moveBlock("left",1);
+            break;
+        case 37: //왼쪽 이동
             moveBlock("left",-1);
             break;
-        case 40:
+        case 40: //아래쪽 이동
             moveBlock("top",1);
             break;
-        case 38:
+        case 38: //도형 회전
             changeDirection();
             break;
-        case 32:  
+        case 32: //space
             dropBlock()
             break;
         default:
@@ -201,8 +397,11 @@ document.addEventListener("keydown",e =>{  //keydown 이벤트가 어떤 키가 
     }
 })
 
-restartButton.addEventListener("click",() =>{
+restartButton.addEventListener("click",() =>{ // 재시작 버튼 클릭 이벤트
     playground.innerHTML="";
+    rankText.style.display = 'none'
     gameText.style.display = 'none'
     init()
 })
+cancelButton.addEventListener("click",CancelEvent) // 취소 버튼 클릭
+signButton.addEventListener("click",signEvent) // 등록 버튼 클릭
