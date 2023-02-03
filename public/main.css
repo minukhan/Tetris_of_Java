@@ -51,7 +51,7 @@ div {
 
 /* contents */
 #contents {
-    width: 40vw; /* 너비 */
+    width: 30vw; /* 너비 */
     padding: 20px; /* 패딩 */
     float: left; /* 왼쪽으로 플로팅 */
     margin-bottom: 20px; /* 아래 요소와의 간격 */
