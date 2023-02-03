@@ -15,8 +15,8 @@ const signButton = document.getElementById("sign"); // 랭킹에서 등록 버�
 
 
 // Setting
-const GAME_ROWS = 20;
-const GAME_COLS = 10;
+const GAME_ROWS = 22;
+const GAME_COLS = 14;
 
 
 // variables
@@ -368,7 +368,7 @@ function ranking(score) {
         printArray.push((k + 1) + '위 : ' + '사용자 : 아무개' + " " + rank[k] + '점');
     }
     showranking.innerHTML = printArray.join("<br>"); // 웹브라우저 화면에 출력
-    console.log(rank)
+    //console.log(rank)
 }
 function scoreCompare(a, b) {
     return b - a;
