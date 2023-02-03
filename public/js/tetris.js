@@ -278,8 +278,8 @@ function renderBlocks(moveType = "") {
     movingItem.top = top;
     movingItem.direction = direction;
 }
-function seizeBlock(){
-    const movingBlocks = document.querySelectorAll(".moving");
+function seizeBlock(){ // 블럭을 고정시키는 함수.
+    const movingBlocks = document.querySelectorAll(".moving")
     movingBlocks.forEach(moving => {
         moving.classList.remove("moving");
         moving.classList.add("seized");
