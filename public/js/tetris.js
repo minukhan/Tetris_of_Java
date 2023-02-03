@@ -8,22 +8,23 @@ const playground = document.querySelector(".playground > ul"); //테트리스 �
 const gameText = document.querySelector(".game-text");
 const scoreDisplay = document.querySelector(".score");
 const restartButton = document.querySelector(".game-text > button");
-const rankText = document.querySelector(".rank-text");
-const cancelButton = document.getElementById("cancel");
-const rankscore = document.getElementById("score");
-const signButton = document.getElementById("sign");
+const rankText = document.querySelector(".rank-text"); // 랭킹 표시 탭
+const cancelButton = document.getElementById("cancel"); // 랭킹에서 취소 버튼
+const rankscore = document.getElementById("score"); // 랭킹에 표시되는 점수
+const signButton = document.getElementById("sign"); // 랭킹에서 등록 버튼
 
-const nextblocks = document.querySelector(".block-next"); //다음 블록 띄우기
 
 // Setting
 const GAME_ROWS = 20;
 const GAME_COLS = 10;
 
+
 // variables
 let score = 0;
 let duration = 500; //블럭이 떨어지는 시간
 let downInterval;
-let tempMovingItem //movingItem을 실행하기 전 잠시 담아두는 용도
+let tempMovingItem; //movingItem을 실행하기 전 잠시 담아두는 용도
+
 
 const BLOCKS = {
     square: [
@@ -210,7 +211,7 @@ const BLOCKS = {
     ],
 }
 
-const rank = []
+const rank = [] // 랭킹에 들어가는 배열
 const movingItem = { //블럭의 타입과 좌표 등과 같은 정보
     type: "",
     direction: 3, //블럭 회전
@@ -218,12 +219,13 @@ const movingItem = { //블럭의 타입과 좌표 등과 같은 정보
     left: 0, //좌표 기준 좌우 조정
 }
 
+
 init()
 
 // functions
 function init() {
     score = 0; //초기화
-    scoreDisplay.innerHTML = score; 
+    scoreDisplay.innerHTML = "현재기록 : " + score; 
     tempMovingItem = { ...movingItem }; //spread operator 이용하여 값만 가져오기
     for(let i = 0; i < GAME_ROWS; i++){
         prependNewLine()
@@ -253,12 +255,12 @@ function renderBlocks(moveType = "") {
         /* 삼항 연산자 
         const xxx = 조건 ? 참일 경우 : 거짓일 경우 */
         const target = playground.childNodes[y] ?  playground.childNodes[y].childNodes[0].childNodes[x] : null;
+        //console.log(target)
         const isAvailable = checkEmpty(target);
         if(isAvailable){
             target.classList.add(type, "moving")    
         } else {
-            tempMovingItem 
-    = { ...movingItem }
+            tempMovingItem = { ...movingItem }
             if(moveType === 'retry'){
                 clearInterval(downInterval)
                 showGameoverText()
@@ -312,7 +314,6 @@ function generateNewBlock(){ //새로운 블럭 내려오게 함
 
     const blockArray = Object.entries(BLOCKS);
     const randomIndex = Math.floor(Math.random() * blockArray.length)
-
     movingItem.type = blockArray[randomIndex][0]
     movingItem.top = 0;
     movingItem.left = 3;
@@ -328,8 +329,7 @@ function checkEmpty(target){
     return true;
 }
 function moveBlock(moveType, amount){
-    tempMovingItem[
-moveType] += amount;
+    tempMovingItem[moveType] += amount;
     renderBlocks(moveType)
 }
 function changeDirection(){
@@ -344,19 +344,34 @@ function dropBlock(){
     },10) //시간 10
 }
 function showGameoverText(){
-    rankscore.innerHTML = score + " 점!!!"
-    rankText.style.display = 'flex'
+    rankscore.innerHTML = score + " 점!!!" // 획득 점수를 랭킹판에 표현
+    rankText.style.display = 'flex' 
 }
-function CancelEvent(){
+function CancelEvent(){ // 취소버튼 클릭 시 이벤트
     gameText.style.display = 'flex'
 }
-function signEvent(){
+function signEvent(){ // 등록 버튼 클릭 시 이벤트
+    // rank.push(score)
+    // console.log(rank) <- 랭킹 확인 용도
+    ranking(score);
+    gameText.style.display = 'flex'
+}
+function ranking(score) {
     rank.push(score)
+    rank.sort(scoreCompare);
+    var showranking = document.getElementById("ranking");
+    var printArray = [];
+    for (var k = 0; k < rank.length; k++) {
+        if (k >= 10) {
+            break;
+        }
+        printArray.push((k + 1) + '위 : ' + '사용자 : 아무개' + " " + rank[k] + '점');
+    }
+    showranking.innerHTML = printArray.join("<br>"); // 웹브라우저 화면에 출력
     console.log(rank)
-    gameText.style.display = 'flex'
 }
-function shownextblocks() {
-
+function scoreCompare(a, b) {
+    return b - a;
 }
 
 // event handling
@@ -382,12 +397,11 @@ document.addEventListener("keydown",e =>{
     }
 })
 
-restartButton.addEventListener("click",() =>{
+restartButton.addEventListener("click",() =>{ // 재시작 버튼 클릭 이벤트
     playground.innerHTML="";
     rankText.style.display = 'none'
     gameText.style.display = 'none'
     init()
 })
-cancelButton.addEventListener("click",CancelEvent)
-signButton.addEventListener("click",signEvent)
-
+cancelButton.addEventListener("click",CancelEvent) // 취소 버튼 클릭
+signButton.addEventListener("click",signEvent) // 등록 버튼 클릭
