@@ -15,8 +15,8 @@ const signButton = document.getElementById("sign"); // 랭킹에서 등록 버�
 
 
 // Setting
-const GAME_ROWS = 22;
-const GAME_COLS = 14;
+const GAME_ROWS = 20;
+const GAME_COLS = 10;
 
 
 // variables
@@ -226,6 +226,7 @@ init()
 function init() {
     score = 0; //초기화
     scoreDisplay.innerHTML = "현재기록 : " + score; 
+    duration = 500; // 속도 초기화
     tempMovingItem = { ...movingItem }; //spread operator 이용하여 값만 가져오기
     for(let i = 0; i < GAME_ROWS; i++){
         prependNewLine()
@@ -278,8 +279,8 @@ function renderBlocks(moveType = "") {
     movingItem.top = top;
     movingItem.direction = direction;
 }
-function seizeBlock(){ // 블럭을 고정시키는 함수.
-    const movingBlocks = document.querySelectorAll(".moving")
+function seizeBlock(){
+    const movingBlocks = document.querySelectorAll(".moving");
     movingBlocks.forEach(moving => {
         moving.classList.remove("moving");
         moving.classList.add("seized");
@@ -301,6 +302,7 @@ function checkMatch(){
             prependNewLine()
             score++;
             scoreDisplay.innerText = score;
+            levelscore(score)
         }
     })
     generateNewBlock()
@@ -368,12 +370,27 @@ function ranking(score) {
         printArray.push((k + 1) + '위 : ' + '사용자 : 아무개' + " " + rank[k] + '점');
     }
     showranking.innerHTML = printArray.join("<br>"); // 웹브라우저 화면에 출력
-    //console.log(rank)
+    console.log(rank)
 }
 function scoreCompare(a, b) {
     return b - a;
 }
-
+function levelscore(score){ // 속도 조절 함수
+    if(score >= 5 && score < 10){
+        duration = 400
+    } else if(score >= 10 && score < 15){
+        duration = 300
+    }
+    else if(score >= 15 && score < 20){
+        duration = 250
+    }
+    else if(score >= 20 && score < 30){
+        duration = 200
+    }
+    else if(score >= 30){
+        duration = 100
+    }
+}
 // event handling
 document.addEventListener("keydown",e =>{
     switch(e.keyCode){

@@ -5,18 +5,86 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
+    
+    
 </head>
 <body>
-    <script src="https://developers.kakao.com/sdk/js/kakao.js" ></script>
+
+    <ul>
+        <li onclick="kakaoLogin();"> 
+            <button id= "login" type="button"><img src="./kakao_login.png" alt=""></button>
+        </li>
+        <li onclick="kakaoLogout();">
+            <button id= "logout" type="button"><img src="./logout.png" alt=""></button>
+        </li>
+    </ul>
+    <!-- 카카오 스크립트 -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
-        window.kakao.init('5d420cdd3da22959dc9c44a900cf4aaa');
+    Kakao.init('5d420cdd3da22959dc9c44a900cf4aaa'); //발급받은 키 중 javascript키를 사용해준다.
+    console.log(Kakao.isInitialized()); // sdk초기화여부판단 // true 나온거 보니까 제대로 들어간듯?
+    //카카오로그인
+    function kakaoLogin() {
+        Kakao.Auth.login({
+            scope:'profile_nickname,account_email,gender',
+          success: function (response) {
+            Kakao.API.request({
+              url: '/v2/user/me',
+              success: function (response) {
+                  console.log(response)
+              },
+              fail: function (error) {
+                console.log(error)
+              },
+            })
+          },
+          fail: function (error) {
+            console.log(error)
+          },
+        })
+      }
+    //카카오로그아웃  
+    function kakaoLogout() {
+        if (Kakao.Auth.getAccessToken()) {
+          Kakao.API.request({
+            url: '/v1/user/unlink',
+            success: function (response) {
+                console.log(response)
+            },
+            fail: function (error) {
+              console.log(error)
+            },
+          })
+          Kakao.Auth.setAccessToken(undefined)
+        }
+      }  
+    </script>
+
+    <!-- <button type="button"><img src="./kakao_login.png" alt=""></button>
+    <a href = "javascript:kakaoLogin();"><img src =./kakao_login.png></a>  
+     a태그 안에서 함수를 불러 일으키고 싶으면 javascript: 함수 이름 이런식으로 사용 가능하다.  
+
+        kakao.init("5d420cdd3da22959dc9c44a900cf4aaa"); // 내 kakao 애플리케이션 javascript 코드
+
+        console.log(Kakao.isInitialized());
 
         function kakaoLogin(){
-            window.kakao.Auth.login({
+            console.log("HI"); // 여기까지 함수는 불러와진다. 
+            window.Kakao.Auth.login({
                 scope:'profile_nickname,account_email,gender',
-                
-            })
+                success: function(authObj){
+                    console.log(authObj);
+                    window.Kakao.API.request({
+                        url: "/v2/user/me",
+                        success : res => {
+                            const kakao_account = res.kakao_account;
+                            console.log(kakao_account);
+                        }
+                    });
+                }
+            });
         }
-    </script>
+    </script>  -->
 </body>
 </html>
