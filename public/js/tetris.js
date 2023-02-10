@@ -21,7 +21,7 @@ const GAME_COLS = 10;
 
 // variables
 let score = 0;
-let duration = 500; //블럭이 떨어지는 시간
+let duration ; //블럭이 떨어지는 시간
 let downInterval;
 let tempMovingItem; //movingItem을 실행하기 전 잠시 담아두는 용도
 
