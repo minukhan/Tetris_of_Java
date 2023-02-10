@@ -1,20 +1,30 @@
+/* css에서 태그는 그냥 태그명을 쓰면 됨.
+    class를 쓰고 싶으면, 마침표(.) 기호를 쓰고 class명 쓰면 됨.
+    id를 쓰고 싶으면, # 기호를 쓰고 id명 쓰면 됨.
+    여기서 중요한 것은 class명은 중복해서 사용 가능하지만, 
+    id는 중복해서 쓸 수 없고 오직 한 번만 사용 가능하다. */
+    
 * {
     margin: 0;
     padding: 0;
 }
 .head {
-
     font-size: 50px;
     text-align: center;
 }
 ul {
-    list-style: none;
+    list-style: none; /*원래는 li 태그를 사용하면 점이 생기는데 그것을 없애주는 코드*/
+
 }
 
 body {
     height: 100%;
     overflow: hidden;
 }
+/* html 에 있는 class 명을 가져와서 css 에 적용을 시키려면 . 을 이용해서 사용하면 되는듯. 
+ex) class 명이 score 라면 .score {} 이런식으로 사용한다. 그리고 태그 안에 있는 태그를 사용하려면 
+.score > score2 이런식으로 사용한다. */
+
 .rank-text {
     display: none;
     justify-content: center;
@@ -78,14 +88,39 @@ body {
     border: none;
     cursor: pointer;
 }
-.playground > ul {
+.score {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 2rem;
+}
+
+.nextblock > ul {
     border: 1px solid #333;
     width: 250px;
+    margin: 0 auto; /* 가운데로 정렬하기 위한 코드임.*/
+}
+.nextblock > ul > li {
+    width: 100%;
+    height: 25px;
+}
+.nextblock > ul > li > ul {
+    display:  flex;
+}
+.nextblock > ul > li > ul > li {
+    width: 25px;
+    height: 25px;
+    outline: 1px solid #ccc;
+}
+
+.playground > ul {
+    /* border: 1px solid #333; */
+    width: 420px;
     margin: 0 auto;
+    padding: 15px 0;
 }
 .playground > ul > li {
     width: 100%;
-    height: 25px;
+    height: 30px;
 }
 
 .playground > ul > li > ul {
@@ -93,8 +128,8 @@ body {
 }
 
 .playground > ul > li > ul > li {
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 30px;
     outline: 1px solid #ccc;
 }
 .square {

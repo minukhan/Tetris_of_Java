@@ -8,7 +8,7 @@ div {
 
 /* container */
 #container {
-    width: 90vw; /* 컨테이너 너비 */
+    width: auto; /* 컨테이너 너비 */
     padding: 20px; /* 패딩 */
     margin: 0 auto; /* 화면 중앙에 배치 */
 }
@@ -19,7 +19,6 @@ div {
     padding-bottom: 10px;
     margin-bottom: 20px; /* 아래 요소들과의 간격(마진) */
 }
-
 .best{
     display: inline-block;
     width: 9vw;
@@ -28,17 +27,15 @@ div {
     font-size: 20px;
     border: 1px solid rgb(241, 7, 7);
 }
-
 .score {
     display: inline-block;
     margin-left: 200px;
-    width: 12vw;
+    width: 9vw;
     height: 3vh;
     text-align: center;
     font-size: 20px;
     border: 1px solid rgb(30, 236, 174);
 }
-
 #login {
     /*display: inline-block;*/
     float: right;
@@ -49,59 +46,53 @@ div {
     border: 1px solid rgb(221, 22, 22);
 }
 
-/* contents */
-#contents {
-    width: 30vw; /* 너비 */
+/* L-sidebar */
+#L-sidebar {
+    width: 10vw; /* 너비 */
     padding: 20px; /* 패딩 */
     float: left; /* 왼쪽으로 플로팅 */
     margin-bottom: 20px; /* 아래 요소와의 간격 */
 }
+.next_block{
+    height: 23.5vh;
+    text-align: center;
+    border: 1px solid rgb(18, 39, 231);
+    margin-bottom: 20px; /* 아래 요소와의 간격 */
+}
+.ad{
+    height: 15vh;
+    text-align: center;
+    border: 1px solid rgb(238, 110, 232);
+}
 
+/* contents */
+#contents {
+    width: 55vw; /* 너비 */
+    padding: 20px; /* 패딩 */
+    float: left; /* 왼쪽으로 플로팅 */
+    margin-left: 32px;
+    margin-bottom: 20px; /* 아래 요소와의 간격 */
+}
 .playground{
     height: 75vh;
     text-align: center;
     border: 1px solid rgb(144, 247, 10);
 }
 
-/* sidebar */
-#sidebar {
-    width: 40vw; /* 너비 */
+/* R-sidebar */
+#R-sidebar {
+    width: 20vw; /* 너비 */
     padding: 20px; /* 패딩 */
-    float: right; /* 왼쪽으로 플로팅 */
+    float: right; /* 오른쪽으로 플로팅 */
     margin-bottom: 20px; /* 아래 요소와의 간격 */
 }
-.left {
-    width: auto;
-    float: left;
-    margin-bottom: 20px; /* 아래 요소와의 간격 */
-}
-
-.next_block{
-    width: 17vw;
-    height: 23.5vh;
-    text-align: center;
-    border: 1px solid rgb(18, 39, 231);
-    margin-bottom: 20px; /* 아래 요소와의 간격 */
-}
-
-.ad{
-    width: 17vw;
-    height: 15vh;
-    text-align: center;
-    border: 1px solid rgb(238, 110, 232);
-}
-
 #rank {
-    float: right;
-    width: 22vw;
     height: 41vh;
     text-align: center;
     border: 1px solid rgb(175, 10, 240);
     margin-bottom: 20px; /* 아래 요소와의 간격 */
 }
-
 .method {
-    clear: both; /* 양쪽 플로팅 해제 */
     height: 31.5vh;
     text-align: center;
     border: 1px solid rgb(238, 29, 186);
