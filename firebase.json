@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site":"turn-project-7725f",
     "public": "public",
     "ignore": [
       "firebase.json",
