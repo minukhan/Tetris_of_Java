@@ -15,13 +15,13 @@ const signButton = document.getElementById("sign"); // 랭킹에서 등록 버�
 
 
 // Setting
-const GAME_ROWS = 22;
-const GAME_COLS = 14;
+const GAME_ROWS = 20;
+const GAME_COLS = 10;
 
 
 // variables
 let score = 0;
-let duration ; //블럭이 떨어지는 시간
+let duration = 500; //블럭이 떨어지는 시간
 let downInterval;
 let tempMovingItem; //movingItem을 실행하기 전 잠시 담아두는 용도
 
@@ -279,8 +279,8 @@ function renderBlocks(moveType = "") {
     movingItem.top = top;
     movingItem.direction = direction;
 }
-function seizeBlock(){ // 블럭을 고정시키는 함수.
-    const movingBlocks = document.querySelectorAll(".moving")
+function seizeBlock(){
+    const movingBlocks = document.querySelectorAll(".moving");
     movingBlocks.forEach(moving => {
         moving.classList.remove("moving");
         moving.classList.add("seized");
@@ -370,7 +370,7 @@ function ranking(score) {
         printArray.push((k + 1) + '위 : ' + '사용자 : 아무개' + " " + rank[k] + '점');
     }
     showranking.innerHTML = printArray.join("<br>"); // 웹브라우저 화면에 출력
-    //console.log(rank)
+    console.log(rank)
 }
 function scoreCompare(a, b) {
     return b - a;
