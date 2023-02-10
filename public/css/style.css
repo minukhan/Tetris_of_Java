@@ -19,6 +19,8 @@ body {
 ex) class 명이 score 라면 .score {} 이런식으로 사용한다. 그리고 태그 안에 있는 태그를 사용하려면 
 .score > score2 이런식으로 사용한다. */
 
+
+
 .rank-text {
     display: none;
     justify-content: center;
