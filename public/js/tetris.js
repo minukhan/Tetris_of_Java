@@ -13,7 +13,7 @@ const GAME_COLS = 14;
 
 // variables
 let score = 0;
-let duration = 500; //블럭이 떨어지는 시간
+let duration ; //블럭이 떨어지는 시간
 let downInterval;
 let tempMovingItem; //movingItem을 실행하기 전 잠시 담아두는 용도
 
@@ -31,6 +31,7 @@ init()
 function init() {
     score = 0; //초기화
     scoreDisplay.innerHTML = "현재기록 : " + score; 
+    duration = 500; // 속도 초기화
     tempMovingItem = { ...movingItem }; //spread operator 이용하여 값만 가져오기
     for(let i = 0; i < GAME_ROWS; i++){
         prependNewLine()
@@ -106,6 +107,7 @@ function checkMatch(){
             prependNewLine()
             score++;
             scoreDisplay.innerText = score;
+            levelscore(score)
         }
     })
     generateNewBlock()
@@ -148,7 +150,6 @@ function dropBlock(){
         moveBlock("top",1)
     },10) //시간 10
 }
-
 // event handling
 document.addEventListener("keydown",e =>{
     switch(e.keyCode){

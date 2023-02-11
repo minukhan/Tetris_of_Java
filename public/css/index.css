@@ -9,15 +9,13 @@ div {
 /* container */
 #container {
     width: auto; /* 컨테이너 너비 */
-    padding: 20px; /* 패딩 */
+    padding: 20px 20px 0 20px; /* 패딩 */
     margin: 0 auto; /* 화면 중앙에 배치 */
 }
 
 /* header */
 #header {
-    padding: 20px; /* 패딩 */
-    padding-bottom: 10px;
-    margin-bottom: 20px; /* 아래 요소들과의 간격(마진) */
+    margin-bottom: 4vh; /* 아래 요소들과의 간격(마진) */
 }
 .best{
     display: inline-block;
@@ -29,7 +27,7 @@ div {
 }
 .score {
     display: inline-block;
-    margin-left: 200px;
+    margin-left: 28vw;
     width: 9vw;
     height: 3vh;
     text-align: center;
@@ -48,29 +46,28 @@ div {
 
 /* L-sidebar */
 #L-sidebar {
-    width: 10vw; /* 너비 */
-    padding: 20px; /* 패딩 */
+    width: 17vw; /* 너비 */
     float: left; /* 왼쪽으로 플로팅 */
     margin-bottom: 20px; /* 아래 요소와의 간격 */
 }
 .next_block{
-    height: 23.5vh;
+    height: 30vh;
     text-align: center;
     border: 1px solid rgb(18, 39, 231);
-    margin-bottom: 20px; /* 아래 요소와의 간격 */
+    margin-bottom: 2vh; /* 아래 요소와의 간격 */
 }
-.ad{
-    height: 15vh;
+.method {
+    height: 42.5vh;
     text-align: center;
-    border: 1px solid rgb(238, 110, 232);
+    border: 1px solid rgb(238, 29, 186);
 }
 
 /* contents */
 #contents {
-    width: 55vw; /* 너비 */
-    padding: 20px; /* 패딩 */
+    width: 50vw; /* 너비 */
     float: left; /* 왼쪽으로 플로팅 */
-    margin-left: 32px;
+
+
     margin-bottom: 20px; /* 아래 요소와의 간격 */
 }
 .playground{
@@ -81,9 +78,14 @@ div {
 
 /* R-sidebar */
 #R-sidebar {
-    width: 20vw; /* 너비 */
-    padding: 20px; /* 패딩 */
+    width: 23vw; /* 너비 */
     float: right; /* 오른쪽으로 플로팅 */
+    margin-bottom: 20px; /* 아래 요소와의 간격 */
+}
+.timer{
+    height: 15vh;
+    text-align: center;
+    border: 1px solid rgb(238, 110, 232);
     margin-bottom: 20px; /* 아래 요소와의 간격 */
 }
 #rank {
@@ -92,14 +94,8 @@ div {
     border: 1px solid rgb(175, 10, 240);
     margin-bottom: 20px; /* 아래 요소와의 간격 */
 }
-.method {
-    height: 31.5vh;
-    text-align: center;
-    border: 1px solid rgb(238, 29, 186);
-}
 
 /* footer */
 #footer {
     clear: both; /* 양쪽 플로팅 해제 */
-    padding: 20px;
 }
