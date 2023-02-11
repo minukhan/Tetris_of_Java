@@ -84,7 +84,7 @@ ex) class 명이 score 라면 .score {} 이런식으로 사용한다. 그리고 
     border: none;
     cursor: pointer;
 }
-.score {
+#score {
     text-align: center;
     font-size: 36px;
     margin-bottom: 2rem;
