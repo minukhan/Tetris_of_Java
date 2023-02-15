@@ -2,72 +2,59 @@ body {
     margin: 0;
 }
 
-div {
-    border: 1px solid #000;
-}
-
 /* container */
 #container {
-    width: auto; /* 컨테이너 너비 */
-    padding: 20px 20px 0 20px; /* 패딩 */
-    margin: 0 auto; /* 화면 중앙에 배치 */
+    width: auto; /* 컨테이너 너비 */ padding: 30px 40px 0 40px; /* 패딩 */ margin: 0 auto; /* 화면 중앙에 배치 */
 }
 
 /* header */
 #header {
-    margin-bottom: 4vh; /* 아래 요소들과의 간격(마진) */
+    margin-bottom: 60px; /* 아래 요소들과의 간격(마진) */
+}
+#header div{ /*best & score & login 공통 적용 */
+    width: 200px; height: 50px; text-align: center; /* 가로 정렬 */ line-height: 50px; /* 세로 정렬을 위해 line-height를 div 태그 height와 동일시킴 */ font-size: 20px;
 }
 .best{
-    display: inline-block;
-    width: 9vw;
-    height: 3vh;
-    text-align: center;
-    font-size: 20px;
-    border: 1px solid rgb(241, 7, 7);
+    display: inline-block; border: 2px solid rgb(241, 7, 7);
 }
 .score {
-    display: inline-block;
-    margin-left: 28vw;
-    width: 9vw;
-    height: 3vh;
-    text-align: center;
-    font-size: 20px;
-    border: 1px solid rgb(30, 236, 174);
+    display: inline-block; margin-left: 400px; border: 2px solid rgb(30, 236, 174);
 }
 #login {
-    /*display: inline-block;*/
-    float: right;
-    width: 8vw;
-    height: 3vh;
-    font-size: 20px;
-    text-align: center;
-    border: 1px solid rgb(221, 22, 22);
+    float: right; border: 2px solid rgb(221, 22, 22);
+}
+
+/* 1024px 이하일 때는 아래 스타일 적용 */
+@media(max-width : 1024px) { 
+    #header {
+        margin-bottom: 40px;
+    }
+    #header div{
+        width: 100px; height: 30px; text-align: center; /* 가로 정렬 */ line-height: 30px; /* 세로 정렬을 위해 line-height를 div 태그 height와 동일시킴 */ font-size: 16px;
+    }
 }
 
 /* L-sidebar */
 #L-sidebar {
-    width: 17vw; /* 너비 */
-    float: left; /* 왼쪽으로 플로팅 */
-    margin-bottom: 20px; /* 아래 요소와의 간격 */
+    width: 320px; /* 너비 */ float: left; /* 왼쪽으로 플로팅 */ margin-bottom: 25px; /* 아래 요소와의 간격 */
+}
+#L-sidebar div { /* next_block & method 공통 적용 */
+    text-align: center;
 }
 .next_block{
-    height: 30vh;
-    text-align: center;
-    border: 1px solid rgb(18, 39, 231);
-    margin-bottom: 2vh; /* 아래 요소와의 간격 */
+    height: 300px; border: 2px solid rgb(18, 39, 231); margin-bottom: 25px; /* 아래 요소와의 간격 */
 }
 .method {
-    height: 42.5vh;
-    text-align: center;
+    height: 350px;
+
     border: 1px solid rgb(238, 29, 186);
 }
 
 /* contents */
 #contents {
-    width: 50vw; /* 너비 */
+    width: 420px; /* 너비 */
     float: left; /* 왼쪽으로 플로팅 */
-
-
+    margin-left: 12vw;
     margin-bottom: 20px; /* 아래 요소와의 간격 */
 }
 .playground{
@@ -78,8 +65,9 @@ div {
 
 /* R-sidebar */
 #R-sidebar {
-    width: 23vw; /* 너비 */
+    width: 340px; /* 너비 */
     float: right; /* 오른쪽으로 플로팅 */
+    margin-left: 20px;
     margin-bottom: 20px; /* 아래 요소와의 간격 */
 }
 .timer{
