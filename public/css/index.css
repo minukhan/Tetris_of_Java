@@ -2,9 +2,9 @@ body {
     margin: 0;
 }
 
-div {
+/*div {
     border: 1px solid #000;
-}
+}*/
 
 /* container */
 #container {
@@ -84,11 +84,17 @@ div {
     margin-bottom: 20px; /* 아래 요소와의 간격 */
 }
 
-.ad{
+.timerBox{
     width: 17vw;
     height: 15vh;
     text-align: center;
     border: 1px solid rgb(238, 110, 232);
+}
+#time {
+    padding: 20px;
+    font-size: 70px;
+    width: auto;
+    height: auto;
 }
 
 #rank {
