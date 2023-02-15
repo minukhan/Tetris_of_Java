@@ -97,21 +97,22 @@ ex) class 명이 score 라면 .score {} 이런식으로 사용한다. 그리고 
     margin-bottom: 2px;
 }
 
-/* .nextblock > ul {
+.next_block > ul {
     border: 1px solid #333;
-    width: 250px;
-    margin: 0 auto; 가운데로 정렬하기 위한 코드임. 
+    width: 200px;
+    margin: 0 auto; /* 가운데로 정렬하기 위한 코드임.*/
+    margin-top: 7px;
 }
-.nextblock > ul > li {
+.next_block > ul > li {
     width: 100%;
-    height: 25px;
+    height: 40px;
 }
-.nextblock > ul > li > ul {
+.next_block > ul > li > ul {
     display:  flex;
 }
-.nextblock > ul > li > ul > li {
-    width: 25px;
-    height: 25px;
+.next_block > ul > li > ul > li {
+    width: 40px;
+    height: 40px;
     outline: 1px solid #ccc;
 } */
 
