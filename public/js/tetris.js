@@ -3,6 +3,8 @@
 
 import BLOCKS from "./block.js";
 import { timeinit, timerEvt, timestop } from "./timer.js";
+import { nextinit } from "./next.js";
+import { saveinfo } from "./firebase.js";
 
 // DOM
 const playground = document.querySelector(".playground > ul"); //테트리스 판
@@ -230,6 +232,7 @@ function init() {
     duration = 500; // 속도 초기화
     timeinit() // 타이머 초기화
     timerEvt() // 타이머 이벤트
+    nextinit()
     tempMovingItem = { ...movingItem }; //spread operator 이용하여 값만 가져오기
     for(let i = 0; i < GAME_ROWS; i++){
         prependNewLine()
@@ -321,7 +324,7 @@ function generateNewBlock(){ //새로운 블럭 내려오게 함
     const randomIndex = Math.floor(Math.random() * blockArray.length)
     movingItem.type = blockArray[randomIndex][0]
     movingItem.top = 0;
-    movingItem.left = 3;
+    movingItem.left = 5;
     movingItem.direction = 0;
     tempMovingItem = {...movingItem};
     renderBlocks()
@@ -356,11 +359,12 @@ function showGameoverText(){
 function CancelEvent(){ // 취소버튼 클릭 시 이벤트
     gameText.style.display = 'flex'
 }
-function signEvent(){ // 등록 버튼 클릭 시 이벤트
+async function signEvent(){ // 등록 버튼 클릭 시 이벤트
     // rank.push(score)
     // console.log(rank) <- 랭킹 확인 용도
     ranking(score);
     gameText.style.display = 'flex'
+    saveinfo(score,timescore)
 }
 function ranking(score) {
     rank.push(score)
