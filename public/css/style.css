@@ -1,3 +1,9 @@
+/* css에서 태그는 그냥 태그명을 쓰면 됨.
+    class를 쓰고 싶으면, 마침표(.) 기호를 쓰고 class명 쓰면 됨.
+    id를 쓰고 싶으면, # 기호를 쓰고 id명 쓰면 됨.
+    여기서 중요한 것은 class명은 중복해서 사용 가능하지만, 
+    id는 중복해서 쓸 수 없고 오직 한 번만 사용 가능하다. */
+    
 * {
     margin: 0;
     padding: 0;
@@ -84,10 +90,11 @@ ex) class 명이 score 라면 .score {} 이런식으로 사용한다. 그리고 
     border: none;
     cursor: pointer;
 }
+
 #score {
     text-align: center;
-    font-size: 36px;
-    margin-bottom: 2rem;
+    font-size: 9px;
+    margin-bottom: 2px;
 }
 
 .next_block > ul {
@@ -107,7 +114,7 @@ ex) class 명이 score 라면 .score {} 이런식으로 사용한다. 그리고 
     width: 40px;
     height: 40px;
     outline: 1px solid #ccc;
-}
+} */
 
 .playground > ul {
     /* border: 1px solid #333; */
