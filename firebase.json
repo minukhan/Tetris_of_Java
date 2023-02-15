@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "turn-project-7725f",
+    "site":"turnproject-tetris",
     "public": "public",
     "ignore": [
       "firebase.json",
