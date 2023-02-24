@@ -31,6 +31,9 @@
               url: '/v2/user/me',
               success: function (response) {
                   console.log(response)
+                  console.log("good")
+                  alert("로그인 성공!")
+                  history.back()
               },
               fail: function (error) {
                 console.log(error)
