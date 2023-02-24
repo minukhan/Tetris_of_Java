@@ -1,8 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
 import { getFirestore,
-     collection,
-      addDoc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+    collection,
+    addDoc, orderBy,
+    query, limit } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -19,8 +20,11 @@ const firebaseConfig = {
   };
 
 // Initialize Firebase
+const rankRef = collection(db,"rank1");
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export const saveinfo = (score, time) =>
-  addDoc(collection(db,"rank1"),{score,time});
+  addDoc(rankRef,{score,time});
+
+export const rankquery = query(rankRef, orderBy("score","desc"),orderBy("time"),limit(10))
