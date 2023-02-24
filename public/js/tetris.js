@@ -1,6 +1,7 @@
 /* 서버에서 실행시 (코드 4) 활성화, (코드 22 ~ 179) 비활성화
    로컬에서 실행시 (코드 22~ 179) 활성화, (코드 4) 비활성화 */
 
+
 import BLOCKS from "./block.js";
 import { timeinit, timerEvt, timestop } from "./timer.js";
 

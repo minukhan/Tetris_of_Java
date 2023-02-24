@@ -25,6 +25,9 @@
                     <button id="cancel">취소</button>
                 </div>
             </div>
+            
+            
+
             <div class="game-text">
                 <span>게임종료!</span>
                 <button>다시시작</button>
@@ -56,4 +59,53 @@
         </div>
     </div>
     <script src="js/tetris.js" type="module" ></script> 
+    
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        
+    import { getFirestore,
+        collection,
+        addDoc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+    
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyAJF4FPH6EXs1jNWzFuTaevX5SIGrn4ZXA",
+          authDomain: "turn-project-7725f.firebaseapp.com",
+          projectId: "turn-project-7725f",
+          storageBucket: "turn-project-7725f.appspot.com",
+          messagingSenderId: "762417957244",
+          appId: "1:762417957244:web:60872ad611736c04ba7cf9",
+          measurementId: "G-GW1R53GSBG"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        console.log('HELLO WORLD')
+        console.log(app)
+
+
+                
+        document.getElementById("sign").addEventListener('click', (event) => { // 랭킹등록 버튼을 눌렀을 경우에 함수를 실행시킨다. 
+            event.preventDefault() // 새로고침을 누를경우에 없어질 수도 있기때문에 잠시 어떠한 이벤트들을 막아달라는 함수이다.
+            console.log(score)
+            addDoc(collection(db,{score : 1
+                                ,time: 2}))
+        })              
+
+
+
+
+
+
+      </script>
+
+</body>
 </html>
