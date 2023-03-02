@@ -1,4 +1,5 @@
-import BLOCKS from "./block.js";
+import NEXTBLOCK from "./nextblock.js";
+import randomIndex from "./tetris.js";
 
 const nextblock = document.querySelector(".next_block > ul");
 
@@ -18,5 +19,29 @@ export function prependNextNewLine() {
         ul2.prepend(matrix2); //만든 셀(10개)을 ul에 넣기
     }
     li2.prepend(ul2) //li에 ul 넣기
-    nextblock.prepend(li2) //테트리스 판에 li 넣기
+    nextblock.prepend(li2) //테트리스 판에 li 넣기    
+
+}
+export function showNext() {
+    if(randomIndex == sqaure) {
+
+    }
+    else if(randomIndex == bar) {
+
+    }
+    else if(randomIndex == tree) {
+
+    }
+    else if(randomIndex == zeeLeft) {
+
+    }
+    else if(randomIndex == zeeRight) {
+
+    }
+    else if(randomIndex == elLeft) {
+
+    }
+    else if(randomIndex == elRight) {
+
+    }
 }

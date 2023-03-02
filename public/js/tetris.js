@@ -166,7 +166,7 @@ function dropBlock(){
 }
 function showGameoverText(){
     timescore = timestop() // 타이머 정지 및 소요시간 저장
-    rankscore.innerHTML = score + " 점!!!" +"<br>"+"소요시간은 : "+timescore +"초 입니다."// 획득 점수를 랭킹판에 표현
+    rankscore.innerHTML = score + " 점!!!" +"<br>"+"소요시간은 : "+ timescore +"초 입니다."// 획득 점수를 랭킹판에 표현
     rankText.style.display = 'flex'
 }
 function CancelEvent(){ // 취소버튼 클릭 시 이벤트
@@ -243,3 +243,5 @@ restartButton.addEventListener("click",() =>{ // 재시작 버튼 클릭 이벤�
 })
 cancelButton.addEventListener("click",CancelEvent) // 취소 버튼 클릭
 signButton.addEventListener("click",signEvent) // 등록 버튼 클릭
+
+export default randomIndex;
