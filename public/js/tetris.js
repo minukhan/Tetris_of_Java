@@ -36,6 +36,7 @@ const movingItem = { //블럭의 타입과 좌표 등과 같은 정보
 
 
 init()
+nextinit()
 
 // functions
 function init() {
@@ -44,7 +45,6 @@ function init() {
     duration = 500; // 속도 초기화
     timeinit() // 타이머 초기화
     timerEvt() // 타이머 이벤트
-    nextinit()
     tempMovingItem = { ...movingItem }; //spread operator 이용하여 값만 가져오기
     for(let i = 0; i < GAME_ROWS; i++){
         prependNewLine()
