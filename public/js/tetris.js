@@ -4,7 +4,7 @@
 import BLOCKS from "./block.js";
 import { timeinit, timerEvt, timestop } from "./timer.js";
 import { nextinit } from "./next.js";
-import { saveinfo, rankquery } from "./firebase.js";
+import { saveinfo, rankpage } from "./firebase.js";
 
 // DOM
 const playground = document.querySelector(".playground > ul"); //테트리스 판
@@ -227,7 +227,7 @@ init()
 
 // functions
 function init() {
-    console.log(rankquery);
+    rankpage
     score = 0; //초기화
     scoreDisplay.innerHTML = "현재기록 : " + score; 
     duration = 500; // 속도 초기화
