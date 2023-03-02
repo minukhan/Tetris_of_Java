@@ -2,6 +2,7 @@ import BLOCKS from "./block.js";
 import { timeinit, timerEvt, timestop } from "./timer.js";
 import { nextinit } from "./next.js";
 import { saveinfo, rankpage } from "./firebase.js";
+import { DBranking } from "./rank.js";
 
 // DOM
 const playground = document.querySelector(".playground > ul"); //테트리스 판
@@ -36,16 +37,16 @@ const movingItem = { //블럭의 타입과 좌표 등과 같은 정보
 
 
 init()
-
+nextinit()
 // functions
 function init() {
-    rankpage
+    DBranking()
+    //console.log(rankpage)
     score = 0; //초기화
     scoreDisplay.innerHTML = "현재기록 : " + score; 
     duration = 500; // 속도 초기화
     timeinit() // 타이머 초기화
     timerEvt() // 타이머 이벤트
-    nextinit()
     tempMovingItem = { ...movingItem }; //spread operator 이용하여 값만 가져오기
     for(let i = 0; i < GAME_ROWS; i++){
         prependNewLine()
@@ -173,28 +174,8 @@ function CancelEvent(){ // 취소버튼 클릭 시 이벤트
     gameText.style.display = 'flex'
 }
 async function signEvent(){ // 등록 버튼 클릭 시 이벤트
-    // rank.push(score)
-    // console.log(rank) <- 랭킹 확인 용도
-    ranking(score);
     gameText.style.display = 'flex'
     saveinfo(score,timescore)
-}
-function ranking(score) {
-    rank.push(score)
-    rank.sort(scoreCompare);
-    var showranking = document.getElementById("ranking");
-    var printArray = [];
-    for (var k = 0; k < rank.length; k++) {
-        if (k >= 10) {
-            break;
-        }
-        printArray.push((k + 1) + '위 : ' + '사용자 : 아무개' + " " + rank[k] + '점');
-    }
-    showranking.innerHTML = printArray.join("<br>"); // 웹브라우저 화면에 출력
-    //console.log(rank)
-}
-function scoreCompare(a, b) {
-    return b - a;
 }
 function levelscore(score){ // 속도 조절 함수
     if(score >= 5 && score < 10){
