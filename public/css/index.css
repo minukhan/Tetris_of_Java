@@ -56,7 +56,10 @@ body {
     width: 350px; line-height: 150px; /* 패딩 대신 세로 중앙 정렬을 위해 timerBox의 height와 크기 동일시 */ font-size: 70px; border: 2px solid orange;
 }
 #rank {
-    float: right; width: 450px; height: 384px; text-align: center; border: 2px solid rgb(175, 10, 240);
+    float: right; width: 450px; height: 384px; caption-side: top; font-size: 23px; text-align: center; border: 2px solid rgb(175, 10, 240);
+}
+#ranking {
+    width: auto; height: auto; text-align: center; font-size: 25px;
 }
 .method {
     clear: both; /* 양쪽 플로팅 해제 */ height: 300px; text-align: center; border: 2px solid rgb(236, 43, 204);
