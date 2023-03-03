@@ -93,7 +93,7 @@ ex) class 명이 score 라면 .score {} 이런식으로 사용한다. 그리고 
 
 #score {
     text-align: center;
-    font-size: 15px;
+    font-size: 20px;
     margin-bottom: 2px;
 }
 
